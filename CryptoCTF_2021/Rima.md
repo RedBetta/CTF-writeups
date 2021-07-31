@@ -4,4 +4,4 @@
 Extracting the attached archive results in 3 files :
 * g.enc
 * h.enc
-* [link](./rima.py)
+* [rima.py](./rima.py)

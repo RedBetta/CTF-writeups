@@ -1,18 +1,18 @@
 # Pyca Pycode writeup 
 
 
-[!banner](img/banner.png)
+![](img/banner.png)
 
 
-There is a [!password_checker.pyc](password_checker.pyc) file attached to the challenge.
+There is a [password_checker.pyc](password_checker.pyc) file attached to the challenge.
 
 A quick ```file``` combined with the ```.pyc``` extension lets us know that this is a Python 3.9 bytecode file.
-[!](img/file.png)
+![](img/file.png)
 
 
 
 By playing around with the program we understand it requires one password argument and checks whether the pass is correct or not.
-[!](img/playaround.png)
+![](img/playaround.png)
 
 
 Knowing this, my first idea was to try using `uncompyle6` to retrieve the equivalent source code. Unfortunately, `uncompyle6` only accepts bytecodes from Python version 1.0 to version 3.8 at the time of writing. 
@@ -24,7 +24,7 @@ Okay so we will have to disassemble the bytecode then. We can accomplish this by
 import dis, marshal
 
 with open("password_checker5000.pyc", "rb") as f:
-    metadata = f.read(16) # The pyc header size is 16 bytes
+    metadata = f.read(16) # The pyc header size for Python 3.9 is 16 bytes
     code = marshal.load(f)
 
 dis.dis(code)
@@ -197,7 +197,7 @@ Disassembly of <code object <lambda> at 0x7ff01d7a39d0, file "main.py", line 15>
              16 RETURN_VALUE
 ```
 
-Thankfully, disassembled python bytecode is pretty straightforward and lets us write back the original program:
+Thankfully, the disassembled python bytecode is pretty straightforward and lets us write back the original program:
 
 ```python3
 from base64 import b32decode
@@ -225,7 +225,9 @@ if __name__ == '__main__':
 
 ```
 
-In order to get the flag, we need to have final_key XOR passphrase = b32decode(hashed) => final_key = passphrase XOR b32decode(hashed).
+In order to get the flag, we need to have :
+final_key XOR passphrase = b32decode(hashed) 
+=> final_key = passphrase XOR b32decode(hashed)
 
 ```python3
 >>> from base64 import b32decode
@@ -256,7 +258,7 @@ for c in final_key[len(final_key)//2+1:][::-1]:
 	print(m, end='_')
 ```
 
-[!](img/solve.png)
+![](img/solve.png)
 
 
 Let's reassemble the strings and we get our flag : ***HackademINT{python_ca_fait_du_bytec0de!_:0}***

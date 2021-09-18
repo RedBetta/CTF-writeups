@@ -4,7 +4,7 @@
 ![](img/banner.png)
 
 
-There is a [password_checker.pyc](password_checker5000.pyc) file attached to the challenge.
+There is a [password_checker5000.pyc](password_checker5000.pyc) file attached to the challenge.
 
 A quick ```file``` combined with the ```.pyc``` extension lets us know that this is a Python 3.9 bytecode file.
 ![](img/file.png)

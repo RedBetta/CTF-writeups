@@ -3,7 +3,7 @@
 ![](img/banner.png)
 
 
-There is a netcat server to connect to and a ![crime.py](crime.py) file attached to the chall description : 
+There is a netcat server to connect to and a [crime.py](crime.py) file attached to the chall description : 
 ```python3
 from Crypto.Cipher import ChaCha20
 from os import urandom
@@ -46,7 +46,7 @@ def main(connection):
 
 This program uses the ChaCha20 stream cipher to encrypt the zlib compression of a plaintext given by the user along with a random byte and the flag.
 
-Since it uses compression, any strings that repeats itself will be stored only once. Also, the program uses a stream cipher without any kind of padding so the length of the ciphertext becomes a valuable information. Finally, the ```CRIME``` in the chall description refers to the ![*Compression Ratio Info-Leak Made Easy*](https://en.wikipedia.org/wiki/CRIME) security exploit.
+Since it uses compression, any strings that repeats itself will be stored only once. Also, the program uses a stream cipher without any kind of padding so the length of the ciphertext becomes a valuable information. Finally, the ```CRIME``` in the chall description refers to the [*Compression Ratio Info-Leak Made Easy*](https://en.wikipedia.org/wiki/CRIME) security exploit.
 
 
 I solved this chall with the following Python script:
